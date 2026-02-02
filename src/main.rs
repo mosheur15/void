@@ -1,6 +1,6 @@
 //! # Void (.vd)
-//! 
-//! **Void** is a systems programming language designed to be as simple as a 
+//!
+//! **Void** is a systems programming language designed to be as simple as a
 //! high-level scripting language while retaining the power of manual memory management.
 //!
 //! ## The Void Philosophy
@@ -10,7 +10,7 @@
 //! - **Smart Defaults:** Type inference is the standard; explicit typing is the exception.
 //!
 //! ## Language Goals
-//! Void aims to eliminate the "complexity tax" of systems programming. It provides the 
+//! Void aims to eliminate the "complexity tax" of systems programming. It provides the
 //! performance of low-level languages with the ergonomics of high-level ones.
 //!
 //! ## Compilation Pipeline
@@ -24,8 +24,32 @@
 //! void run main.vd
 //! ```
 
+#![allow(unused)]
+pub mod out;
+
+use out::Colorize;
 
 fn main() {
-    // Entry point for the Void compiler
-    println!("Void: Systems power with scripting simplicity.");
+    let colors: Vec<(&str, fn(&str) -> String)> = vec![
+        ("Black", Colorize::black),
+        ("Red", Colorize::red),
+        ("Green", Colorize::green),
+        ("Yellow", Colorize::yellow),
+        ("Blue", Colorize::blue),
+        ("Magenta", Colorize::magenta),
+        ("Cyan", Colorize::cyan),
+        ("White", Colorize::white),
+        ("Bright Black", Colorize::bright_black),
+        ("Bright Red", Colorize::bright_red),
+        ("Bright Green", Colorize::bright_green),
+        ("Bright Yellow", Colorize::bright_yellow),
+        ("Bright Blue", Colorize::bright_blue),
+        ("Bright Magenta", Colorize::bright_magenta),
+        ("Bright Cyan", Colorize::bright_cyan),
+        ("Bright White", Colorize::bright_white),
+    ];
+
+    for (name, func) in colors {
+        println!("{}: {}", name, func("Sample Text"));
+    }
 }
