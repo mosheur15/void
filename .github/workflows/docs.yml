@@ -19,7 +19,7 @@ jobs:
       - name: Generate Docs
         run: cargo doc --no-deps
       - name: Fix Index for GitHub Pages
-        run: echo '<meta http-equiv="refresh" content="0;url=your_crate_name/index.html">' > target/doc/index.html
+        run: echo '<meta http-equiv="refresh" content="0;url=void/index.html">' > target/doc/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
