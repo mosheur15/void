@@ -52,4 +52,5 @@ fn main() {
     for (name, func) in colors {
         println!("{}: {}", name, func("Sample Text"));
     }
+
 }
