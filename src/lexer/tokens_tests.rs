@@ -6,21 +6,22 @@ use super::*;
 #[test]
 fn tokentype_extract() {
     let data = b"a".to_vec();
-    let obj = [
-        TokenType::String(data.clone()).extract(),
-        TokenType::Integer(data.clone()).extract(),
-        TokenType::Float(data.clone()).extract(),
-        TokenType::Identifier(data.clone()).extract(),
-    ];
+    let map: HashMap<&str, String> = HashMap::from([
+        ("TokenType::String", TokenType::String(data.clone()).extract()),
+        ("TokenType::Integer", TokenType::Integer(data.clone()).extract()),
+        ("TokenType::Float", TokenType::Float(data.clone()).extract()),
+        ("TokenType::Identifier", TokenType::Identifier(data.clone()).extract()),
+    ]);
 
-    for parsed in obj {
+    for (key, val) in map {
         assert_eq!(
-            "a", parsed,
-            "expected 'TokenType::<Type>.extract()' to return String 'a'. got {}",
-            parsed
+            "a".to_string(), val,
+            "Expected {}(b\"a\".to_vec()).extract() to return String \"a\". got \"{}\"",
+            key, val
         );
     }
 }
+
 
 // test keyword detection by TokenType::keyword_or_identifier()
 #[test]
