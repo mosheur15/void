@@ -43,36 +43,7 @@ impl Colorize {
 }
 
 
-// ================ Format messages =============
-// why not just print it within the function?
-// - because i can't put tests for them.
-// 
-// since printing stuff is not used excessively it won't bottleneck performance.
-
-
-/// Colorize the prefix to red and format error message.
-///
-/// # Arguments:
-///
-/// * `prefix` - The prefix (Error, InvalidFile, NotFound etc.).
-/// * `msg` - The message.
-///
-/// # Example:
-///
-/// ```
-/// let my_error = format_error("Error", "something..");
-/// assert_eq!("\x1b[91Error\x1b[0m: something..", my_error);
-/// ```
-///
-/// # Returns
-///
-/// Returns a formatted String (prefix: msg) where the prefix is red.
-pub fn format_error(prefix: &str, msg: &str) -> String {
-   return "hello".to_string(); 
-}
-
-
-// unit tests (the test file is in ./tests.rs)
+/// unit tests (the test file is in ./tests.rs)
 #[cfg(test)]
 mod tests;
 

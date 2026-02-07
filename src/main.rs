@@ -26,31 +26,37 @@
 
 #![allow(unused)]
 pub mod out;
+pub mod lexer;
 
 use out::Colorize;
 
 fn main() {
-    let colors: Vec<(&str, fn(&str) -> String)> = vec![
-        ("Black", Colorize::black),
-        ("Red", Colorize::red),
-        ("Green", Colorize::green),
-        ("Yellow", Colorize::yellow),
-        ("Blue", Colorize::blue),
-        ("Magenta", Colorize::magenta),
-        ("Cyan", Colorize::cyan),
-        ("White", Colorize::white),
-        ("Bright Black", Colorize::bright_black),
-        ("Bright Red", Colorize::bright_red),
-        ("Bright Green", Colorize::bright_green),
-        ("Bright Yellow", Colorize::bright_yellow),
-        ("Bright Blue", Colorize::bright_blue),
-        ("Bright Magenta", Colorize::bright_magenta),
-        ("Bright Cyan", Colorize::bright_cyan),
-        ("Bright White", Colorize::bright_white),
-    ];
 
-    for (name, func) in colors {
-        println!("{}: {}", name, func("Sample Text"));
-    }
-
+    let mut file = lexer::File::new("./test.vd".to_string());
+    file.read();
+    println!("{:#?}", file.raw);
+    //
+    // let colors: Vec<(&str, fn(&str) -> String)> = vec![
+    //     ("Black", Colorize::black),
+    //     ("Red", Colorize::red),
+    //     ("Green", Colorize::green),
+    //     ("Yellow", Colorize::yellow),
+    //     ("Blue", Colorize::blue),
+    //     ("Magenta", Colorize::magenta),
+    //     ("Cyan", Colorize::cyan),
+    //     ("White", Colorize::white),
+    //     ("Bright Black", Colorize::bright_black),
+    //     ("Bright Red", Colorize::bright_red),
+    //     ("Bright Green", Colorize::bright_green),
+    //     ("Bright Yellow", Colorize::bright_yellow),
+    //     ("Bright Blue", Colorize::bright_blue),
+    //     ("Bright Magenta", Colorize::bright_magenta),
+    //     ("Bright Cyan", Colorize::bright_cyan),
+    //     ("Bright White", Colorize::bright_white),
+    // ];
+    //
+    // for (name, func) in colors {
+    //     println!("{}: {}", name, func("Sample Text"));
+    // }
+    //
 }
