@@ -2,7 +2,7 @@
 
 use std::fmt::Display;
 
-#[derive(Debug, Hash, PartialEq, Eq)]
+#[derive(Debug, Hash, PartialEq, Eq, Clone)]
 pub enum TokenType {
     // Structural / Single Characters
     //
@@ -98,6 +98,12 @@ impl TokenType {
             _ => TokenType::Identifier(slice.to_vec())
         }
     }
+}
+
+#[derive(Debug)]
+pub struct Token {
+    pub name: TokenType,
+    pub position: usize,
 }
 
 

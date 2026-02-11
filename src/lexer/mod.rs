@@ -1,6 +1,16 @@
 mod tokens;
 use std::fs;
 
+use crate::lexer::tokens::{TokenType, Token};
+
+#[derive(Debug)]
+enum Mode {
+    Normal,
+    String,
+    Integer,
+    Float,
+    Identifier
+}
 
 /// A structure representing a file buffer with tracking and tokemization capabilities.
 #[derive(Debug)]
@@ -9,6 +19,7 @@ pub struct File {
     pub raw: Vec<u8>,
     pub cursor: usize,
     pub line_mapping: Vec<usize>,
+    pub tokens: Vec<Token>,
 }
 
 impl File {
@@ -22,6 +33,7 @@ impl File {
             raw: vec![],
             cursor: 0,
             line_mapping: vec![],
+            tokens: vec![],
         };
         file.read();
         return file;
@@ -44,6 +56,55 @@ impl File {
             10 as usize,
             20 as usize,
         );
+    }
+
+
+    /// Tokenize the content stored in `File.raw` and save it in `File.tokens`
+    pub fn tokenize(&mut self){
+        // state machine mode.
+        let mut mode = Mode::Normal;
+
+        // holds the starting values for literals.
+        let mut str_start = 0;
+        let mut int_start = 0;
+        let mut flt_start = 0;
+        let mut idn_start = 0;
+
+        // state machine.
+        while self.cursor < self.raw.len() {
+            match mode {
+                // Normal mode: handle all the tokens except literals and keywords.
+                Mode::Normal => {
+                    match self.raw[self.cursor] {
+                        // IMPORTANT: do not consume the newline from any other mode. so the line 
+                        // number is not broken. also it cab be a nightmare to debug if you do.
+                        b'\n' => {
+                            self.line_mapping.push(self.cursor);
+                            self.cursor += 1;
+                        }
+
+                        // single character tokens.
+                        b'(' => {
+                            self.tokens.push(Token{
+                                name: TokenType::LeftParen,
+                                position: self.cursor
+                            });
+                            self.cursor += 1;
+                        }
+
+                        // illegal character.
+                        _=> {
+                            println!("State machine got broken with invalid character");
+                            std::process::exit(2);
+                        }
+                    }
+                },
+                _ => {
+                    println!("State machine got broken with state {:?}", mode);
+                    std::process::exit(2);
+                }
+            }
+        }
     }
 }
 

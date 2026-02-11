@@ -1,9 +1,36 @@
-this is a file.
-this file is big.
-very big in fact.
-what should i write next?
-hmm, lemme see. i have aura. 
+if else
+for while
+return
+let a = 567;
+const b = "my dog";
+let ff = 123.678;
+a.trim();
+function cc(hello, world) {
+  return ok;
+}
+true
+false
+null
 
-zat is za main thing.
-norhing else to write.
-by bye.
+
+function cat(dog, sheep){
+  let name = "cat name";
+  const breed = rainbow;
+  let weight = 1.7;
+  let empty = null;
+  let list = [1,2,3,"string", 1.5];
+
+  for i in range(10) {
+    breed.random();
+  }
+
+  while true {
+    breed.get();
+  }
+
+  if dog.bark(){
+    return (true, false);
+  }else{
+    return (false, true);
+  }
+}
