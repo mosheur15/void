@@ -52,5 +52,18 @@ fn tokentype_keyword_or_identifier() {
             result
         );
     }
+
+    let ids = [b"cat" as &[u8], b"dog", b"sheep"];
+    for id in ids {
+        let result = TokenType::keyword_or_identifier(id);
+        let word = unsafe {std::str::from_utf8_unchecked(id)}.to_string();
+        assert_eq!(
+            TokenType::Identifier(id.to_vec()),
+            result,
+            "Expected b\"{}\" to be TokenType::Identifier got TokenType::{}",
+            word,
+            result
+        );
+    }
 }
 

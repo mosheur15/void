@@ -67,7 +67,7 @@ impl std::fmt::Display for TokenType {
 
 
 impl TokenType {
-    // Extract the data inside enums. returns emty string if theres no data.
+    /// Extract the data inside enums. returns emty string if theres no data.
     pub fn extract(&self) -> String {
         match self {
             TokenType::Identifier(data)
@@ -81,7 +81,7 @@ impl TokenType {
         }
     }
 
-    // returns keyword if a u8 slice is a knwon keyword otherwise returns identifier.
+    /// returns keyword type if a u8 slice is a knwon keyword otherwise returns identifier.
     pub fn keyword_or_identifier(slice: &[u8]) -> TokenType {
         match slice {
             b"if" => TokenType::If,
